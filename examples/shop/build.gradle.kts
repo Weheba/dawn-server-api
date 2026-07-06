@@ -1,5 +1,5 @@
 plugins {
-    id("feather-server-api.java-conventions")
+    id("dawn-server-api.java-conventions")
 }
 
 repositories {

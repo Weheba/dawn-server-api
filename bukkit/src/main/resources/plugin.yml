@@ -1,16 +1,17 @@
-name: FeatherServerAPI
+name: DawnServerAPI
 version: '${version}'
-author: Feather
-website: https://feathermc.com
-main: net.digitalingot.feather.serverapi.bukkit.FeatherBukkitPlugin
+author: Dawn
+website: https://dawn.gg
+main: gg.dawn.serverapi.bukkit.FeatherBukkitPlugin
 load: STARTUP
 api-version: "1.13"
+provides: [ FeatherServerAPI ]
 
 permissions:
-  feather-server-api.notify:
+  dawn-server-api.notify:
     description: Grants permission to see notifications
     default: op
-  feather-server-api.*:
+  dawn-server-api.*:
     default: op
     children:
-      - feather-server-api.notify
+      - dawn-server-api.notify

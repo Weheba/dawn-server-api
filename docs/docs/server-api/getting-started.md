@@ -40,7 +40,7 @@ import TabItem from '@theme/TabItem';
 
 <dependencies>
     <dependency>
-        <groupId>net.digitalingot.feather-server-api</groupId>
+        <groupId>gg.dawn.server-api</groupId>
         <artifactId>api</artifactId>
         <version>0.0.5</version>
         <scope>provided</scope>
@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'net.digitalingot.feather-server-api:api:0.0.5'
+    compileOnly 'gg.dawn.server-api:api:0.0.5'
 }
 ```
 
@@ -76,7 +76,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("net.digitalingot.feather-server-api:api:0.0.5")
+    compileOnly("gg.dawn.server-api:api:0.0.5")
 }
 ```
 

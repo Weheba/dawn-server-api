@@ -1,5 +1,5 @@
 plugins {
-    id("feather-server-api.java-conventions")
+    id("dawn-server-api.java-conventions")
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 

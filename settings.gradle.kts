@@ -1,4 +1,4 @@
-rootProject.name = "feather-server-api"
+rootProject.name = "dawn-server-api"
 
 includeBuild("build-logic")
 

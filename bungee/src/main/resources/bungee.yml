@@ -1,4 +1,4 @@
-name: FeatherServerAPI
-main: net.digitalingot.feather.serverapi.bungee.FeatherBungeePlugin
+name: DawnServerAPI
+main: gg.dawn.serverapi.bungee.FeatherBungeePlugin
 version: 0.0.1-SNAPSHOT
-author: Feather
+author: Dawn

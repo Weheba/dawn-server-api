@@ -1,10 +1,10 @@
 {
-  "id": "feather-server-api",
-  "name": "FeatherServerAPI",
+  "id": "dawn-server-api",
+  "name": "DawnServerAPI",
   "version": "0.0.1-SNAPSHOT",
   "authors": [
-    "Feather"
+    "Dawn"
   ],
   "dependencies": [],
-  "main": "net.digitalingot.feather.serverapi.velocity.FeatherVelocityPlugin"
+  "main": "gg.dawn.serverapi.velocity.FeatherVelocityPlugin"
 }
