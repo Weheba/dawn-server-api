@@ -2,9 +2,11 @@ package gg.dawn.serverapi.api.event.player;
 
 import java.util.Collection;
 import gg.dawn.serverapi.api.event.FeatherEvent;
+import gg.dawn.serverapi.api.model.ClientBrand;
 import gg.dawn.serverapi.api.model.FeatherMod;
 import gg.dawn.serverapi.api.model.Platform;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents an event triggered when a player joins the Minecraft server with Feather. This event
@@ -28,4 +30,22 @@ public interface PlayerHelloEvent extends FeatherEvent {
    */
   @NotNull
   Collection<FeatherMod> getFeatherMods();
+
+  /**
+   * Retrieves the client family. Self-declared and spoofable; not for security decisions.
+   *
+   * @return the client brand
+   * @since 0.0.6
+   */
+  @NotNull
+  ClientBrand getClientBrand();
+
+  /**
+   * Retrieves the advertised client version, or {@code null} for pre-protocol-7 clients.
+   *
+   * @return the client version, or null if unknown
+   * @since 0.0.6
+   */
+  @Nullable
+  String getClientVersion();
 }

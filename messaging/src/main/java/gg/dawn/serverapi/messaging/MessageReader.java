@@ -41,6 +41,9 @@ public interface MessageReader {
 
   <T> Optional<T> readOptional(Decoder<T> decoder);
 
+  // Whether unread bytes remain; used for optional trailing fields
+  boolean hasRemaining();
+
   @FunctionalInterface
   interface Decoder<T> extends Function<MessageReader, T> {}
 }

@@ -3,8 +3,11 @@ package gg.dawn.serverapi.api.player;
 import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import gg.dawn.serverapi.api.model.ClientBrand;
+import gg.dawn.serverapi.api.model.ClientMod;
 import gg.dawn.serverapi.api.model.FeatherMod;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /** Represents a player using Feather */
 public interface FeatherPlayer {
@@ -81,4 +84,32 @@ public interface FeatherPlayer {
    * @since 0.0.5
    */
   void bypassMissPenalty(boolean bypass);
+
+  /**
+   * Returns the client family. Self-declared and spoofable; not for security decisions.
+   *
+   * @return the client brand
+   * @since 0.0.6
+   */
+  @NotNull
+  ClientBrand getClientBrand();
+
+  /**
+   * Returns the advertised client version, or {@code null} for pre-protocol-7 clients.
+   *
+   * @return the client version, or null if unknown
+   * @since 0.0.6
+   */
+  @Nullable
+  String getClientVersion();
+
+  /**
+   * Requests the mod loader mod list (not Feather modules). Times out exceptionally for
+   * pre-protocol-7 clients.
+   *
+   * @return A {@link CompletableFuture} that resolves to the client's mod list.
+   * @since 0.0.6
+   */
+  @NotNull
+  CompletableFuture<@NotNull Collection<@NotNull ClientMod>> getClientMods();
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import gg.dawn.serverapi.api.model.ClientBrand;
 import gg.dawn.serverapi.api.model.FeatherMod;
 import gg.dawn.serverapi.api.model.Platform;
 import gg.dawn.serverapi.api.player.FeatherPlayer;
@@ -91,7 +92,6 @@ public class BukkitMessagingService implements Listener {
 
   private void handleHello(Player player, C2SClientHello hello) {
     BukkitFeatherPlayer featherPlayer = new BukkitFeatherPlayer(player, this, this.rpcService);
-    this.playerService.register(featherPlayer);
 
     Platform platform;
     switch (hello.getPlatform()) {
@@ -105,13 +105,33 @@ public class BukkitMessagingService implements Listener {
         throw new AssertionError();
     }
 
+    ClientBrand brand;
+    switch (hello.getBrand()) {
+      case DAWN:
+        brand = ClientBrand.DAWN;
+        break;
+      case DAWN_MCPVP:
+        brand = ClientBrand.DAWN_MCPVP;
+        break;
+      case FEATHER:
+      default:
+        brand = ClientBrand.FEATHER;
+        break;
+    }
+    String clientVersion = hello.getClientVersion().isEmpty() ? null : hello.getClientVersion();
+
+    featherPlayer.setClientInfo(brand, clientVersion);
+    this.playerService.register(featherPlayer);
+
     BukkitPlayerHelloEvent helloEvent =
         new BukkitPlayerHelloEvent(
             featherPlayer,
             platform,
             hello.getFeatherMods().stream()
                 .map(domain -> new FeatherMod(domain.getName()))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()),
+            brand,
+            clientVersion);
 
     this.callEvent(helloEvent);
   }

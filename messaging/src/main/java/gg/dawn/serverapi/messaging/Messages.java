@@ -13,6 +13,7 @@ import gg.dawn.serverapi.messaging.messages.client.S2CFUIMessage;
 import gg.dawn.serverapi.messaging.messages.client.S2CFUIResponse;
 import gg.dawn.serverapi.messaging.messages.client.S2CGetEnabledMods;
 import gg.dawn.serverapi.messaging.messages.client.S2CHandshake;
+import gg.dawn.serverapi.messaging.messages.client.S2CGetModList;
 import gg.dawn.serverapi.messaging.messages.client.S2CMissPenaltyState;
 import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
 import gg.dawn.serverapi.messaging.messages.client.S2CServerBackground;
@@ -27,9 +28,11 @@ import gg.dawn.serverapi.messaging.messages.server.C2SFUILoadError;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUIRequest;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUIStateChange;
 import gg.dawn.serverapi.messaging.messages.server.C2SHandshake;
+import gg.dawn.serverapi.messaging.messages.server.C2SModList;
 import gg.dawn.serverapi.messaging.messages.server.C2SRequestServerBackground;
 import org.jetbrains.annotations.Nullable;
 
+// Registration order is the wire id: append only, never reorder
 public enum Messages {
   SERVER_BOUND(
       registry(ServerMessageHandler.class)
@@ -39,7 +42,8 @@ public enum Messages {
           .register(C2SFUILoadError.class, C2SFUILoadError::new)
           .register(C2SFUIRequest.class, C2SFUIRequest::new)
           .register(C2SEnabledMods.class, C2SEnabledMods::new)
-          .register(C2SRequestServerBackground.class, C2SRequestServerBackground::new)),
+          .register(C2SRequestServerBackground.class, C2SRequestServerBackground::new)
+          .register(C2SModList.class, C2SModList::new)),
   CLIENT_BOUND(
       registry(ClientMessageHandler.class)
           .register(S2CHandshake.class, S2CHandshake::new)
@@ -56,7 +60,8 @@ public enum Messages {
           .register(S2CServerBackground.class, S2CServerBackground::new)
           .register(S2CSetDiscordActivity.class, S2CSetDiscordActivity::new)
           .register(S2CClearDiscordActivity.class, S2CClearDiscordActivity::new)
-          .register(S2CMissPenaltyState.class, S2CMissPenaltyState::new));
+          .register(S2CMissPenaltyState.class, S2CMissPenaltyState::new)
+          .register(S2CGetModList.class, S2CGetModList::new));
 
   private final MessageRegistry<?> registry;
 

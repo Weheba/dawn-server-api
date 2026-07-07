@@ -7,6 +7,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+import gg.dawn.serverapi.api.model.ClientBrand;
+import gg.dawn.serverapi.api.model.ClientMod;
 import gg.dawn.serverapi.api.model.FeatherMod;
 import gg.dawn.serverapi.api.player.FeatherPlayer;
 import gg.dawn.serverapi.bukkit.messaging.BukkitMessagingService;
@@ -18,6 +20,7 @@ import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class BukkitFeatherPlayer implements FeatherPlayer {
 
@@ -25,6 +28,8 @@ public class BukkitFeatherPlayer implements FeatherPlayer {
   @NotNull private final BukkitMessagingService messagingService;
   @NotNull private final PlayerMessageHandler messageHandler;
   private final Set<FeatherMod> blockedMods = Sets.newHashSet();
+  @NotNull private ClientBrand clientBrand = ClientBrand.FEATHER;
+  @Nullable private String clientVersion;
 
   public BukkitFeatherPlayer(
       @NotNull Player player,
@@ -33,6 +38,26 @@ public class BukkitFeatherPlayer implements FeatherPlayer {
     this.player = player;
     this.messagingService = messagingService;
     this.messageHandler = new PlayerMessageHandler(this, rpcService);
+  }
+
+  public void setClientInfo(@NotNull ClientBrand brand, @Nullable String version) {
+    this.clientBrand = brand;
+    this.clientVersion = version;
+  }
+
+  @Override
+  public @NotNull ClientBrand getClientBrand() {
+    return this.clientBrand;
+  }
+
+  @Override
+  public @Nullable String getClientVersion() {
+    return this.clientVersion;
+  }
+
+  @Override
+  public @NotNull CompletableFuture<@NotNull Collection<@NotNull ClientMod>> getClientMods() {
+    return this.messageHandler.requestClientMods();
   }
 
   public @NotNull Player getPlayer() {

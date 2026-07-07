@@ -321,6 +321,11 @@ public class SimpleMessageBuffer implements MessageBuffer {
     return this.buffer.remaining();
   }
 
+  @Override
+  public boolean hasRemaining() {
+    return this.buffer.hasRemaining();
+  }
+
   @Internal
   byte[] toByteArray() {
     this.buffer.flip();

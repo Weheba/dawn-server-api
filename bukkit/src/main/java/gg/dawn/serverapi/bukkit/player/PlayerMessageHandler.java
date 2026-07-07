@@ -10,18 +10,21 @@ import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 import gg.dawn.serverapi.api.FeatherAPI;
 import gg.dawn.serverapi.api.meta.ServerListBackground;
+import gg.dawn.serverapi.api.model.ClientMod;
 import gg.dawn.serverapi.api.model.FeatherMod;
 import gg.dawn.serverapi.bukkit.ui.BukkitUIPage;
 import gg.dawn.serverapi.bukkit.ui.BukkitUIService;
 import gg.dawn.serverapi.bukkit.ui.rpc.RpcService;
 import gg.dawn.serverapi.messaging.ServerMessageHandler;
 import gg.dawn.serverapi.messaging.messages.client.S2CGetEnabledMods;
+import gg.dawn.serverapi.messaging.messages.client.S2CGetModList;
 import gg.dawn.serverapi.messaging.messages.client.S2CServerBackground;
 import gg.dawn.serverapi.messaging.messages.client.S2CServerBackground.Action;
 import gg.dawn.serverapi.messaging.messages.server.C2SEnabledMods;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUILoadError;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUIRequest;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUIStateChange;
+import gg.dawn.serverapi.messaging.messages.server.C2SModList;
 import gg.dawn.serverapi.messaging.messages.server.C2SRequestServerBackground;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,6 +41,20 @@ class PlayerMessageHandler implements ServerMessageHandler {
       CacheBuilder.newBuilder()
           .expireAfterWrite(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS)
           .<Integer, CompletableFuture<Collection<FeatherMod>>>removalListener(
+              removalNotification -> {
+                RemovalCause cause = removalNotification.getCause();
+                if (cause != RemovalCause.EXPLICIT && cause != RemovalCause.REPLACED) {
+                  //noinspection ConstantConditions
+                  removalNotification.getValue().completeExceptionally(new TimeoutException());
+                }
+              })
+          .build();
+
+  @SuppressWarnings("UnstableApiUsage")
+  private final Cache<Integer, CompletableFuture<Collection<ClientMod>>> pendingClientModsRequests =
+      CacheBuilder.newBuilder()
+          .expireAfterWrite(REQUEST_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+          .<Integer, CompletableFuture<Collection<ClientMod>>>removalListener(
               removalNotification -> {
                 RemovalCause cause = removalNotification.getCause();
                 if (cause != RemovalCause.EXPLICIT && cause != RemovalCause.REPLACED) {
@@ -134,12 +151,34 @@ class PlayerMessageHandler implements ServerMessageHandler {
     }
   }
 
+  @Override
+  public void handle(C2SModList modList) {
+    @SuppressWarnings("UnstableApiUsage")
+    CompletableFuture<@NotNull Collection<@NotNull ClientMod>> future =
+        this.pendingClientModsRequests.asMap().remove(modList.getId());
+    if (future != null) {
+      future.complete(
+          modList.getMods().stream()
+              .map(mod -> new ClientMod(mod.getId(), mod.getVersion()))
+              .collect(Collectors.toList()));
+    }
+  }
+
   public @NotNull CompletableFuture<@NotNull Collection<@NotNull FeatherMod>> requestEnabledMods() {
     int id = this.requestId++;
     CompletableFuture<@NotNull Collection<@NotNull FeatherMod>> future = new CompletableFuture<>();
     //noinspection UnstableApiUsage
     this.pendingModsRequests.put(id, future);
     this.player.sendMessage(new S2CGetEnabledMods(id));
+    return future;
+  }
+
+  public @NotNull CompletableFuture<@NotNull Collection<@NotNull ClientMod>> requestClientMods() {
+    int id = this.requestId++;
+    CompletableFuture<@NotNull Collection<@NotNull ClientMod>> future = new CompletableFuture<>();
+    //noinspection UnstableApiUsage
+    this.pendingClientModsRequests.put(id, future);
+    this.player.sendMessage(new S2CGetModList(id));
     return future;
   }
 }

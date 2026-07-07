@@ -4,6 +4,7 @@ import gg.dawn.serverapi.messaging.messages.server.C2SEnabledMods;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUILoadError;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUIRequest;
 import gg.dawn.serverapi.messaging.messages.server.C2SFUIStateChange;
+import gg.dawn.serverapi.messaging.messages.server.C2SModList;
 import gg.dawn.serverapi.messaging.messages.server.C2SRequestServerBackground;
 
 public interface ServerMessageHandler extends MessageHandler {
@@ -16,4 +17,6 @@ public interface ServerMessageHandler extends MessageHandler {
   void handle(C2SEnabledMods enabledMods);
 
   void handle(C2SRequestServerBackground serverBackground);
+
+  void handle(C2SModList modList);
 }
