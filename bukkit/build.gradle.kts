@@ -19,7 +19,7 @@ dependencies {
 }
 
 tasks.withType<Jar> {
-    archiveBaseName.set("feather-server-api")
+    archiveBaseName.set("dawn-server-api")
     archiveClassifier.set("bukkit")
 }
 
