@@ -34,7 +34,7 @@ import TabItem from '@theme/TabItem';
 <repositories>
     <repository>
         <id>feather-repo</id>
-        <url>https://repo.feathermc.net/artifactory/maven-releases</url>
+        <url>https://nexus.dawn.gg/repository/maven-releases</url>
     </repository>
 </repositories>
 
@@ -55,7 +55,7 @@ import TabItem from '@theme/TabItem';
 repositories {
     maven {
         name = 'feather-repo'
-        url = 'https://repo.feathermc.net/artifactory/maven-releases'
+        url = 'https://nexus.dawn.gg/repository/maven-releases'
     }
 }
 
@@ -71,7 +71,7 @@ dependencies {
 repositories {
     maven {
         name = "feather-repo"
-        url = uri("https://repo.feathermc.net/artifactory/maven-releases")
+        url = uri("https://nexus.dawn.gg/repository/maven-releases")
     }
 }
 

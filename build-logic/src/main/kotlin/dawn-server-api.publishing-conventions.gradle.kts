@@ -21,17 +21,17 @@ publishing {
 
     repositories {
         maven {
-            name = "Artifactory"
+            name = "DawnNexus"
             url = if (version.toString().endsWith("SNAPSHOT")) {
-                uri("https://repo.feathermc.net/artifactory/maven-snapshots/")
+                uri("https://nexus.dawn.gg/repository/maven-snapshots/")
             } else {
-                uri("https://repo.feathermc.net/artifactory/maven-releases/")
+                uri("https://nexus.dawn.gg/repository/maven-releases/")
             }
             credentials {
                 username =
-                    project.findProperty("artifactory.username") as? String ?: System.getenv("ARTIFACTORY_USERNAME")
+                    project.findProperty("dawnNexus.username") as? String ?: System.getenv("NEXUS_MAVEN_USERNAME")
                 password =
-                    project.findProperty("artifactory.password") as? String ?: System.getenv("ARTIFACTORY_PASSWORD")
+                    project.findProperty("dawnNexus.password") as? String ?: System.getenv("NEXUS_MAVEN_PASSWORD")
             }
         }
     }

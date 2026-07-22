@@ -27,8 +27,8 @@ jobs:
         if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
         run: ./gradlew publish
         env:
-          ARTIFACTORY_USERNAME: ${{ vars.ARTIFACTORY_USERNAME }}
-          ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          NEXUS_MAVEN_USERNAME: ${{ secrets.NEXUS_MAVEN_USERNAME }}
+          NEXUS_MAVEN_PASSWORD: ${{ secrets.NEXUS_MAVEN_PASSWORD }}
       - name: Version
         run: |
           VERSION=${GITHUB_REF_NAME#v}
