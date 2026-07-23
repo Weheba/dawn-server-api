@@ -44,6 +44,6 @@ tasks.withType<ProcessResources> {
 }
 
 tasks.withType<Jar> {
-    archiveBaseName.set("feather-server-api-example-shop")
+    archiveBaseName.set("dawn-server-api-example-shop")
     archiveClassifier.set("bukkit")
 }

@@ -21,7 +21,7 @@ publishing {
 
     repositories {
         maven {
-            name = "DawnNexus"
+            name = "dawn"
             url = if (version.toString().endsWith("SNAPSHOT")) {
                 uri("https://nexus.dawn.gg/repository/maven-snapshots/")
             } else {
@@ -29,9 +29,9 @@ publishing {
             }
             credentials {
                 username =
-                    project.findProperty("dawnNexus.username") as? String ?: System.getenv("NEXUS_MAVEN_USERNAME")
+                    project.findProperty("dawnMavenUsername") as? String ?: System.getenv("DAWN_MAVEN_USERNAME")
                 password =
-                    project.findProperty("dawnNexus.password") as? String ?: System.getenv("NEXUS_MAVEN_PASSWORD")
+                    project.findProperty("dawnMavenPassword") as? String ?: System.getenv("DAWN_MAVEN_PASSWORD")
             }
         }
     }
