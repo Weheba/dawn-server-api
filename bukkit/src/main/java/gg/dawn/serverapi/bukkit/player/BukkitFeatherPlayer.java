@@ -1,8 +1,10 @@
 package gg.dawn.serverapi.bukkit.player;
 
 import com.google.common.collect.Sets;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -15,8 +17,10 @@ import gg.dawn.serverapi.bukkit.messaging.BukkitMessagingService;
 import gg.dawn.serverapi.bukkit.ui.rpc.RpcService;
 import gg.dawn.serverapi.messaging.Message;
 import gg.dawn.serverapi.messaging.ServerMessageHandler;
+import gg.dawn.serverapi.messaging.messages.client.S2CHudState;
 import gg.dawn.serverapi.messaging.messages.client.S2CMissPenaltyState;
 import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
+import gg.dawn.serverapi.messaging.messages.client.S2CPostEffects;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
@@ -109,6 +113,16 @@ public class BukkitFeatherPlayer implements FeatherPlayer {
   @Override
   public void bypassMissPenalty(boolean enabled) {
     sendMessage(new S2CMissPenaltyState(!enabled));
+  }
+
+  @Override
+  public void setPostEffects(@NotNull List<@NotNull String> effectIds) {
+    sendMessage(new S2CPostEffects(new ArrayList<>(effectIds)));
+  }
+
+  @Override
+  public void setHudHidden(boolean hidden) {
+    sendMessage(new S2CHudState(hidden));
   }
 
   private void sendModsAction(

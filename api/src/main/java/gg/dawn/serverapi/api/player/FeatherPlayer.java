@@ -1,6 +1,7 @@
 package gg.dawn.serverapi.api.player;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import gg.dawn.serverapi.api.model.ClientBrand;
@@ -112,4 +113,26 @@ public interface FeatherPlayer {
    */
   @NotNull
   CompletableFuture<@NotNull Collection<@NotNull ClientMod>> getClientMods();
+
+  /**
+   * Full-state sync of the client's active post effects: namespaced ids of
+   * post_effect JSONs in the active resource packs, applied in list order.
+   * An empty list clears all effects.
+   * Rendered on Dawn clients on Minecraft 1.21.6+, ignored elsewhere.
+   *
+   * @param effectIds The ordered post effect ids, at most 16, each at most 256 characters.
+   * @throws IllegalArgumentException if the limits are exceeded
+   * @since 0.0.8
+   */
+  void setPostEffects(@NotNull List<@NotNull String> effectIds);
+
+  /**
+   * Hides or restores the client HUD, equivalent to the F1 toggle. The client
+   * restores the HUD on disconnect. 
+   * It is not enforcable, i.e. user can still press F1 to enable the hud again.
+   *
+   * @param hidden true to hide the HUD
+   * @since 0.0.8
+   */
+  void setHudHidden(boolean hidden);
 }

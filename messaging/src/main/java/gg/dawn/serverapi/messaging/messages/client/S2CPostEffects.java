@@ -12,6 +12,7 @@ import gg.dawn.serverapi.messaging.exception.MessageException;
  * Full-state sync of the client's active post effects: namespaced ids of
  * post_effect JSONs in the active resource packs, applied in list order.
  * An empty list clears all effects.
+ * Rendered on Dawn clients on Minecraft 1.21.6+, ignored elsewhere.
  */
 public class S2CPostEffects implements Message<ClientMessageHandler> {
   public static final int MAX_EFFECTS = 16;
