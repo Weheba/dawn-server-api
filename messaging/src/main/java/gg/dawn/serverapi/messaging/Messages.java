@@ -14,8 +14,10 @@ import gg.dawn.serverapi.messaging.messages.client.S2CFUIResponse;
 import gg.dawn.serverapi.messaging.messages.client.S2CGetEnabledMods;
 import gg.dawn.serverapi.messaging.messages.client.S2CHandshake;
 import gg.dawn.serverapi.messaging.messages.client.S2CGetModList;
+import gg.dawn.serverapi.messaging.messages.client.S2CHudState;
 import gg.dawn.serverapi.messaging.messages.client.S2CMissPenaltyState;
 import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
+import gg.dawn.serverapi.messaging.messages.client.S2CPostEffects;
 import gg.dawn.serverapi.messaging.messages.client.S2CServerBackground;
 import gg.dawn.serverapi.messaging.messages.client.S2CSetDiscordActivity;
 import gg.dawn.serverapi.messaging.messages.client.S2CSetFUIState;
@@ -61,7 +63,9 @@ public enum Messages {
           .register(S2CSetDiscordActivity.class, S2CSetDiscordActivity::new)
           .register(S2CClearDiscordActivity.class, S2CClearDiscordActivity::new)
           .register(S2CMissPenaltyState.class, S2CMissPenaltyState::new)
-          .register(S2CGetModList.class, S2CGetModList::new));
+          .register(S2CGetModList.class, S2CGetModList::new)
+          .register(S2CPostEffects.class, S2CPostEffects::new)
+          .register(S2CHudState.class, S2CHudState::new));
 
   private final MessageRegistry<?> registry;
 
@@ -101,9 +105,11 @@ public enum Messages {
 
     @Nullable
     public Message<T> create(int messageId, MessageReader reader) {
-      Function<MessageReader, ? extends Message<T>> messageCreator =
-          this.idToMessageMapping.get(messageId);
-      return messageCreator != null ? messageCreator.apply(reader) : null;
+      // ids from newer protocol versions than this side knows must decode to null
+      if (messageId < 0 || messageId >= this.idToMessageMapping.size()) {
+        return null;
+      }
+      return this.idToMessageMapping.get(messageId).apply(reader);
     }
 
     @SuppressWarnings("rawtypes")

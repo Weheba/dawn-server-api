@@ -7,8 +7,10 @@ import gg.dawn.serverapi.messaging.messages.client.S2CFUIMessage;
 import gg.dawn.serverapi.messaging.messages.client.S2CFUIResponse;
 import gg.dawn.serverapi.messaging.messages.client.S2CGetEnabledMods;
 import gg.dawn.serverapi.messaging.messages.client.S2CGetModList;
+import gg.dawn.serverapi.messaging.messages.client.S2CHudState;
 import gg.dawn.serverapi.messaging.messages.client.S2CMissPenaltyState;
 import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
+import gg.dawn.serverapi.messaging.messages.client.S2CPostEffects;
 import gg.dawn.serverapi.messaging.messages.client.S2CServerBackground;
 import gg.dawn.serverapi.messaging.messages.client.S2CSetDiscordActivity;
 import gg.dawn.serverapi.messaging.messages.client.S2CSetFUIState;
@@ -46,4 +48,8 @@ public interface ClientMessageHandler extends MessageHandler {
   void handle(S2CMissPenaltyState missPenaltyState);
 
   void handle(S2CGetModList getModList);
+
+  void handle(S2CPostEffects postEffects);
+
+  void handle(S2CHudState hudState);
 }

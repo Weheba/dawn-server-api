@@ -76,6 +76,11 @@ public class BukkitMessagingService implements Listener {
         return;
       }
 
+      // null for message ids from a newer protocol than this side knows
+      if (decodedMessage == null) {
+        return;
+      }
+
       handleMessage(featherPlayer, decodedMessage);
     } else {
       C2SClientHello hello = this.handshaking.handle(player, message);
