@@ -26,7 +26,7 @@ Our shop UI will feature:
 4. Search functionality
 5. Responsive design for different screen sizes
 
-> **Note:** The complete source code for this example is available on [GitHub](https://github.com/FeatherMC/feather-server-api/tree/main/examples/) with pre-built downloads available in the [releases section](https://github.com/FeatherMC/feather-server-api/releases).
+> **Note:** The complete source code for this example is available on [GitHub](https://github.com/Weheba/dawn-server-api/tree/main/examples/) with pre-built downloads available in the [releases section](https://github.com/Weheba/dawn-server-api/releases).
 
 ## Server-Side Implementation
 
@@ -1766,4 +1766,4 @@ By using web technologies with the Feather UIs, you can create rich, interactive
 
 ## Resources
 
-The complete implementation of this shop system can be found in our [GitHub repository](https://github.com/FeatherMC/feather-server-api/tree/main/examples). For those who prefer a ready-to-use solution, you can download the pre-built JAR file from our [releases page](https://github.com/FeatherMC/feather-server-api/releases).
+The complete implementation of this shop system can be found in our [GitHub repository](https://github.com/Weheba/dawn-server-api/tree/main/examples). For those who prefer a ready-to-use solution, you can download the pre-built JAR file from our [releases page](https://github.com/Weheba/dawn-server-api/releases).

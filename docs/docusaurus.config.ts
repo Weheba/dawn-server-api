@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Feather Dev',
+  title: 'Dawn Dev',
   tagline: '',
   favicon: 'img/favicon.ico',
 
@@ -17,8 +17,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'feathermc',
-  projectName: 'feather-server-api',
+  organizationName: 'Weheba',
+  projectName: 'dawn-server-api',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

@@ -11,7 +11,7 @@ import Image from '@theme/IdealImage';
 
 ## Overview
 
-Discord Rich Presence allows your Minecraft server to customize how players appear in Discord while playing on your server. With the Feather Server API, you can dynamically update a player's Discord status to show:
+Discord Rich Presence allows your Minecraft server to customize how players appear in Discord while playing on your server. With the Dawn Server API, you can dynamically update a player's Discord status to show:
 
 - Custom server icons
 - Activity descriptions

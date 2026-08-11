@@ -11,7 +11,7 @@ import OverlayDemoVideoUrl from './assets/overlay-demo.mp4';
 
 # UI System
 
-Feather UI's allows you to create rich, interactive in-game overlays using web technologies (HTML, CSS, and JavaScript). This powerful feature lets server developers build complex interfaces that seamlessly integrate with Minecraft gameplay.
+Dawn UI allows you to create rich, interactive in-game overlays using web technologies (HTML, CSS, and JavaScript). This powerful feature lets server developers build complex interfaces that seamlessly integrate with Minecraft gameplay.
 
 <ReactPlayer playing loop muted url={OverlayDemoVideoUrl} />
 *Visual representation of how the UI overlay appears in-game, showing a transparent overlay with interactive elements on top of the Minecraft world.*
@@ -32,6 +32,21 @@ The UI System is built around a few core concepts:
 - **UI Lifecycle**: Events for managing the creation, display, and destruction of UI pages
 - **RPC Communication**: Method for handling data exchange between client and server
 - **UI Handlers**: Callbacks for reacting to UI state changes
+
+## Server Whitelisting
+
+Custom Server UI is only rendered on servers whitelisted by the Dawn team. On other
+servers the client rejects the page: the player gets a chat message explaining the
+server isn't whitelisted, and your plugin receives an error through the page's
+`UILoadHandler`:
+
+- `NOT_WHITELISTED` - the server is not on the allowlist
+- `UI_UNAVAILABLE` - the whitelist service could not be reached
+
+Handle these to fall back to a chest GUI or chat-based flow. To get your server
+whitelisted, contact the Dawn team. During development you can bypass the check
+on your own client: enable **Developer** settings at the bottom of the General
+settings tab, then turn on **Allow Server UI on unwhitelisted servers**.
 
 ## Getting Started
 
@@ -146,13 +161,17 @@ page.setFocusHandler(new UIFocusHandlerAdapter() {
 
 ### Load Handler
 
-Provides error notifications if the UI fails to load:
+Provides error notifications if the UI fails to load. Besides page load failures,
+this is also where whitelist rejections arrive (see [Server Whitelisting](#server-whitelisting)):
 
 ```java
 page.setLoadHandler(new UILoadHandlerAdapter() {
     @Override
     public void onLoadError(FeatherPlayer player, String errorText) {
-        // UI page failed to load
+        if ("NOT_WHITELISTED".equals(errorText) || "UI_UNAVAILABLE".equals(errorText)) {
+            // fall back to a non-UI flow, e.g. a chest GUI
+            return;
+        }
         player.getPlayer().sendMessage("UI failed to load: " + errorText);
     }
 });

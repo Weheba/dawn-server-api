@@ -9,6 +9,7 @@ import gg.dawn.serverapi.api.FeatherAPI;
 import gg.dawn.serverapi.api.event.player.PlayerHelloEvent;
 import gg.dawn.serverapi.api.player.FeatherPlayer;
 import gg.dawn.serverapi.api.ui.UIPage;
+import gg.dawn.serverapi.api.ui.handler.UILoadHandlerAdapter;
 import gg.dawn.serverapi.examples.shop.economy.EconomyProvider;
 import gg.dawn.serverapi.examples.shop.economy.EconomyProviderFactory;
 import gg.dawn.serverapi.examples.shop.ui.ShopController;
@@ -129,6 +130,13 @@ public class ShopPlugin extends JavaPlugin {
     this.shopPage.setLifecycleHandler(new ShopLifecycleHandler(this));
     this.shopPage.setFocusHandler(new ShopFocusHandler(this));
     this.shopPage.setVisibilityHandler(new ShopVisibilityHandler(this));
+    this.shopPage.setLoadHandler(
+        new UILoadHandlerAdapter() {
+          @Override
+          public void onLoadError(FeatherPlayer player, String errorText) {
+            getLogger().warning("Shop UI failed to load for " + player.getName() + ": " + errorText);
+          }
+        });
 
     // Register RPC controller
     FeatherAPI.getUIService().registerCallbacks(this.shopPage, new ShopController(this));

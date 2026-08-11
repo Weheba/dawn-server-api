@@ -8,7 +8,7 @@ sidebar_position: 3
 
 # Mod Management
 
-The Feather Server API allows you to manage which mods players can use on your server. This includes blocking mods entirely, enabling or disabling specific mods for individual players, and retrieving information about which mods are blocked or enabled.
+The Dawn Server API allows you to manage which mods players can use on your server. This includes blocking mods entirely, enabling or disabling specific mods for individual players, and retrieving information about which mods are blocked or enabled.
 
 ## Overview
 

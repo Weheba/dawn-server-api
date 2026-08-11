@@ -14,7 +14,7 @@ Events allows your server plugin to respond to various Feather-specific events. 
 
 ## Available Events
 
-The Feather Server API provides several events that your plugin can subscribe to:
+The Dawn Server API provides several events that your plugin can subscribe to:
 
 <Collapse summary="PlayerHelloEvent">
 Triggered when a player Feather joins the server.

@@ -11,7 +11,7 @@ description: Control whether players can bypass the attack cooldown after missin
 
 In vanilla Minecraft survival, players experience a brief attack cooldown (often called "miss penalty") when they miss an attack with a weapon. This mechanic prevents players from continuously swinging their weapons without penalty.
 
-The Feather Server API allows server operators to control whether players can bypass this miss penalty.
+The Dawn Server API allows server operators to control whether players can bypass this miss penalty.
 
 ## Getting Started
 

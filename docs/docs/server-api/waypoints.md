@@ -2,7 +2,7 @@
 id: waypoints
 title: Waypoints
 sidebar_label: Waypoints
-description: Learn how to create and manage waypoints for players using the Feather Server API
+description: Learn how to create and manage waypoints for players using the Dawn Server API
 ---
 
 import Image from '@theme/IdealImage';

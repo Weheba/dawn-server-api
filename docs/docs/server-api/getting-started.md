@@ -1,16 +1,16 @@
 ---
 id: getting-started
-title: Getting Started with Feather Server API
+title: Getting Started with Dawn Server API
 sidebar_label: Getting Started
-description: Learn how to set up and integrate Feather Server API in your Minecraft server plugins.
+description: Learn how to set up and integrate Dawn Server API in your Minecraft server plugins.
 sidebar_position: 1
 slug: /
 ---
 
 
-# Getting Started with Feather Server API
+# Getting Started with Dawn Server API
 
-The Feather Server API allows server owners and plugin developers to interact with features of Feather from their Minecraft servers. This guide will help you integrate the API into your server plugins.
+The Dawn Server API allows server owners and plugin developers to interact with features of the Dawn client from their Minecraft servers. This guide will help you integrate the API into your server plugins.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Before you begin, ensure you have:
 
 ## Adding the Dependency
 
-To use the Feather Server API in your project, you need to add it as a dependency. The examples below show how to include it in your project using different build systems.
+To use the Dawn Server API in your project, you need to add it as a dependency. The examples below show how to include it in your project using different build systems.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 ```xml
 <repositories>
     <repository>
-        <id>feather-repo</id>
+        <id>dawn-repo</id>
         <url>https://nexus.dawn.gg/repository/maven-releases</url>
     </repository>
 </repositories>
@@ -42,7 +42,7 @@ import TabItem from '@theme/TabItem';
     <dependency>
         <groupId>gg.dawn.server-api</groupId>
         <artifactId>api</artifactId>
-        <version>0.0.5</version>
+        <version>0.0.8</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -54,13 +54,13 @@ import TabItem from '@theme/TabItem';
 ```groovy
 repositories {
     maven {
-        name = 'feather-repo'
+        name = 'dawn-repo'
         url = 'https://nexus.dawn.gg/repository/maven-releases'
     }
 }
 
 dependencies {
-    compileOnly 'gg.dawn.server-api:api:0.0.5'
+    compileOnly 'gg.dawn.server-api:api:0.0.8'
 }
 ```
 
@@ -70,13 +70,13 @@ dependencies {
 ```kotlin
 repositories {
     maven {
-        name = "feather-repo"
+        name = "dawn-repo"
         url = uri("https://nexus.dawn.gg/repository/maven-releases")
     }
 }
 
 dependencies {
-    compileOnly("gg.dawn.server-api:api:0.0.5")
+    compileOnly("gg.dawn.server-api:api:0.0.8")
 }
 ```
 
@@ -84,12 +84,12 @@ dependencies {
 </Tabs>
 
 :::caution Important Note
-Always use `provided` (Maven) or `compileOnly` (Gradle) scope for the Feather Server API dependency, as it will be provided by the Feather Server API plugin at runtime.
+Always use `provided` (Maven) or `compileOnly` (Gradle) scope for the Dawn Server API dependency, as it will be provided by the Dawn Server API plugin at runtime.
 :::
 
 ## Installing the Server Plugin
 
-The Feather Server API requires a plugin to be installed on your server. Download the latest version from [GitHub](https://github.com/FeatherMC/feather-server-api/releases) and place it in your server's `plugins` directory.
+The Dawn Server API requires a plugin to be installed on your server. Download the latest version from [GitHub](https://github.com/Weheba/dawn-server-api/releases) and place it in your server's `plugins` directory.
 
 After restarting your server, the API will be available for your plugins to use.
 
@@ -120,7 +120,7 @@ This simple example logs information when a player using Feather joins your serv
 
 ## Next Steps
 
-Now that you've set up the Feather Server API in your project, you can explore its various features:
+Now that you've set up the Dawn Server API in your project, you can explore its various features:
 
 - [Events](./events.md) - Subscribe to Feather events
 - [Mods](./mods.md) - Control which mods players can use
