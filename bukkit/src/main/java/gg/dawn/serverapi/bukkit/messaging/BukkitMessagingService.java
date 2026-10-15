@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import gg.dawn.serverapi.api.model.ClientBrand;
 import gg.dawn.serverapi.api.model.FeatherMod;
+import gg.dawn.serverapi.api.model.PayNowCheckoutType;
 import gg.dawn.serverapi.api.model.Platform;
 import gg.dawn.serverapi.api.player.FeatherPlayer;
 import gg.dawn.serverapi.bukkit.FeatherBukkitPlugin;
@@ -125,7 +126,21 @@ public class BukkitMessagingService implements Listener {
     }
     String clientVersion = hello.getClientVersion().isEmpty() ? null : hello.getClientVersion();
 
-    featherPlayer.setClientInfo(brand, clientVersion);
+    PayNowCheckoutType payNowCheckoutType;
+    switch (hello.getPayNowCheckoutType()) {
+      case IN_GAME:
+        payNowCheckoutType = PayNowCheckoutType.IN_GAME;
+        break;
+      case BROWSER:
+        payNowCheckoutType = PayNowCheckoutType.BROWSER;
+        break;
+      case UNSUPPORTED:
+      default:
+        payNowCheckoutType = PayNowCheckoutType.UNSUPPORTED;
+        break;
+    }
+
+    featherPlayer.setClientInfo(brand, clientVersion, payNowCheckoutType);
     this.playerService.register(featherPlayer);
 
     BukkitPlayerHelloEvent helloEvent =

@@ -10,6 +10,7 @@ import gg.dawn.serverapi.messaging.messages.client.S2CGetModList;
 import gg.dawn.serverapi.messaging.messages.client.S2CHudState;
 import gg.dawn.serverapi.messaging.messages.client.S2CMissPenaltyState;
 import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
+import gg.dawn.serverapi.messaging.messages.client.S2CPayNowCheckout;
 import gg.dawn.serverapi.messaging.messages.client.S2CPostEffects;
 import gg.dawn.serverapi.messaging.messages.client.S2CServerBackground;
 import gg.dawn.serverapi.messaging.messages.client.S2CSetDiscordActivity;
@@ -52,4 +53,6 @@ public interface ClientMessageHandler extends MessageHandler {
   void handle(S2CPostEffects postEffects);
 
   void handle(S2CHudState hudState);
+
+  void handle(S2CPayNowCheckout payNowCheckout);
 }
