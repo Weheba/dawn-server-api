@@ -17,6 +17,7 @@ import gg.dawn.serverapi.messaging.messages.client.S2CGetModList;
 import gg.dawn.serverapi.messaging.messages.client.S2CHudState;
 import gg.dawn.serverapi.messaging.messages.client.S2CMissPenaltyState;
 import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
+import gg.dawn.serverapi.messaging.messages.client.S2CPayNowCheckout;
 import gg.dawn.serverapi.messaging.messages.client.S2CPostEffects;
 import gg.dawn.serverapi.messaging.messages.client.S2CServerBackground;
 import gg.dawn.serverapi.messaging.messages.client.S2CSetDiscordActivity;
@@ -65,7 +66,8 @@ public enum Messages {
           .register(S2CMissPenaltyState.class, S2CMissPenaltyState::new)
           .register(S2CGetModList.class, S2CGetModList::new)
           .register(S2CPostEffects.class, S2CPostEffects::new)
-          .register(S2CHudState.class, S2CHudState::new));
+          .register(S2CHudState.class, S2CHudState::new)
+          .register(S2CPayNowCheckout.class, S2CPayNowCheckout::new));
 
   private final MessageRegistry<?> registry;
 

@@ -7,11 +7,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Pattern;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import gg.dawn.serverapi.api.model.ClientBrand;
 import gg.dawn.serverapi.api.model.ClientMod;
 import gg.dawn.serverapi.api.model.FeatherMod;
+import gg.dawn.serverapi.api.model.PayNowCheckoutType;
 import gg.dawn.serverapi.api.player.FeatherPlayer;
 import gg.dawn.serverapi.bukkit.messaging.BukkitMessagingService;
 import gg.dawn.serverapi.bukkit.ui.rpc.RpcService;
@@ -20,6 +22,7 @@ import gg.dawn.serverapi.messaging.ServerMessageHandler;
 import gg.dawn.serverapi.messaging.messages.client.S2CHudState;
 import gg.dawn.serverapi.messaging.messages.client.S2CMissPenaltyState;
 import gg.dawn.serverapi.messaging.messages.client.S2CModsAction;
+import gg.dawn.serverapi.messaging.messages.client.S2CPayNowCheckout;
 import gg.dawn.serverapi.messaging.messages.client.S2CPostEffects;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -27,6 +30,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class BukkitFeatherPlayer implements FeatherPlayer {
+  private static final Pattern PAYNOW_TOKEN = Pattern.compile("[A-Za-z0-9._-]{1,512}");
 
   @NotNull private final Player player;
   @NotNull private final BukkitMessagingService messagingService;
@@ -34,6 +38,7 @@ public class BukkitFeatherPlayer implements FeatherPlayer {
   private final Set<FeatherMod> blockedMods = Sets.newHashSet();
   @NotNull private ClientBrand clientBrand = ClientBrand.FEATHER;
   @Nullable private String clientVersion;
+  @NotNull private PayNowCheckoutType payNowCheckoutType = PayNowCheckoutType.UNSUPPORTED;
 
   public BukkitFeatherPlayer(
       @NotNull Player player,
@@ -44,9 +49,13 @@ public class BukkitFeatherPlayer implements FeatherPlayer {
     this.messageHandler = new PlayerMessageHandler(this, rpcService);
   }
 
-  public void setClientInfo(@NotNull ClientBrand brand, @Nullable String version) {
+  public void setClientInfo(
+      @NotNull ClientBrand brand,
+      @Nullable String version,
+      @NotNull PayNowCheckoutType payNowCheckoutType) {
     this.clientBrand = brand;
     this.clientVersion = version;
+    this.payNowCheckoutType = payNowCheckoutType;
   }
 
   @Override
@@ -123,6 +132,23 @@ public class BukkitFeatherPlayer implements FeatherPlayer {
   @Override
   public void setHudHidden(boolean hidden) {
     sendMessage(new S2CHudState(hidden));
+  }
+
+  @Override
+  public @NotNull PayNowCheckoutType getPayNowCheckoutType() {
+    return this.payNowCheckoutType;
+  }
+
+  @Override
+  public void openPayNowCheckout(@NotNull String checkoutToken) {
+    if (!PAYNOW_TOKEN.matcher(checkoutToken).matches()) {
+      throw new IllegalArgumentException("Malformed PayNow checkout token");
+    }
+    if (this.payNowCheckoutType != PayNowCheckoutType.UNSUPPORTED) {
+      sendMessage(new S2CPayNowCheckout(checkoutToken));
+    } else {
+      this.player.sendMessage("https://checkout.paynow.gg/?t=" + checkoutToken);
+    }
   }
 
   private void sendModsAction(

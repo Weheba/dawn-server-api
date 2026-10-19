@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import gg.dawn.serverapi.api.model.ClientBrand;
+import gg.dawn.serverapi.api.model.PayNowCheckoutType;
 import gg.dawn.serverapi.api.model.ClientMod;
 import gg.dawn.serverapi.api.model.FeatherMod;
 import org.jetbrains.annotations.NotNull;
@@ -135,4 +136,24 @@ public interface FeatherPlayer {
    * @since 0.0.8
    */
   void setHudHidden(boolean hidden);
+
+  /**
+   * How this client opens a PayNow checkout via {@link #openPayNowCheckout(String)}.
+   * {@link PayNowCheckoutType#UNSUPPORTED} means the chat link fallback is used.
+   *
+   * @since 0.0.9
+   */
+  @NotNull
+  PayNowCheckoutType getPayNowCheckoutType();
+
+  /**
+   * Opens the PayNow checkout for the given checkout token. Clients whose
+   * {@link #getPayNowCheckoutType()} is {@link PayNowCheckoutType#UNSUPPORTED} receive a chat link to {@code https://checkout.paynow.gg/?t=<token>} instead.
+   * Only call this in response to a player action (command, click, GUI button).
+   *
+   * @param checkoutToken The PayNow checkout token, matching {@code [A-Za-z0-9._-]{1,512}}.
+   * @throws IllegalArgumentException if the token is malformed
+   * @since 0.0.9
+   */
+  void openPayNowCheckout(@NotNull String checkoutToken);
 }
