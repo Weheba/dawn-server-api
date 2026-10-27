@@ -21,6 +21,18 @@ public class C2SClientHello implements Message<ServerMessageHandler> {
     this(platform, featherMods, ClientBrand.FEATHER, "", PayNowCheckoutType.UNSUPPORTED);
   }
 
+  /**
+   * Protocol 7 hello. Kept for clients compiled against 0.0.8: it advertises no PayNow checkout
+   * support.
+   */
+  public C2SClientHello(
+      Platform platform,
+      Collection<FeatherMod> featherMods,
+      ClientBrand brand,
+      String clientVersion) {
+    this(platform, featherMods, brand, clientVersion, PayNowCheckoutType.UNSUPPORTED);
+  }
+
   public C2SClientHello(
       Platform platform,
       Collection<FeatherMod> featherMods,
@@ -45,11 +57,16 @@ public class C2SClientHello implements Message<ServerMessageHandler> {
       this.brand = ClientBrand.FEATHER;
       this.clientVersion = "";
     }
-    // Protocol 8 trailing field
+    // Protocol 8 trailing field: absent from protocol 7 clients, ignored by protocol 7 plugins
     this.payNowCheckoutType =
-        reader.hasRemaining()
-            ? reader.readEnum(PayNowCheckoutType.class)
-            : PayNowCheckoutType.UNSUPPORTED;
+        reader.hasRemaining() ? readPayNowCheckoutType(reader) : PayNowCheckoutType.UNSUPPORTED;
+  }
+
+  // A type appended by a newer client decodes as UNSUPPORTED instead of failing the whole hello.
+  private static PayNowCheckoutType readPayNowCheckoutType(MessageReader reader) {
+    int ordinal = reader.readVarInt();
+    PayNowCheckoutType[] types = PayNowCheckoutType.values();
+    return ordinal >= 0 && ordinal < types.length ? types[ordinal] : PayNowCheckoutType.UNSUPPORTED;
   }
 
   @Override

@@ -54,5 +54,9 @@ public interface ClientMessageHandler extends MessageHandler {
 
   void handle(S2CHudState hudState);
 
-  void handle(S2CPayNowCheckout payNowCheckout);
+  /**
+   * Added in 0.0.9 (protocol 8). A default no-op so handlers compiled against 0.0.8 still load:
+   * a client that never advertises a PayNow checkout type is never sent this message.
+   */
+  default void handle(S2CPayNowCheckout payNowCheckout) {}
 }
