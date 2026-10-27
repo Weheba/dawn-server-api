@@ -42,7 +42,7 @@ import TabItem from '@theme/TabItem';
     <dependency>
         <groupId>gg.dawn.server-api</groupId>
         <artifactId>api</artifactId>
-        <version>0.0.8</version>
+        <version>0.0.9</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'gg.dawn.server-api:api:0.0.8'
+    compileOnly 'gg.dawn.server-api:api:0.0.9'
 }
 ```
 
@@ -76,7 +76,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("gg.dawn.server-api:api:0.0.8")
+    compileOnly("gg.dawn.server-api:api:0.0.9")
 }
 ```
 
