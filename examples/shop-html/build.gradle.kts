@@ -15,7 +15,7 @@ val shopHtmlInput = file("src/shop.html")
 val shopHtmlOutput = file("dist/shop.min.html")
 
 val installHtmlMinifier by tasks.registering(NpmTask::class) {
-    args.addAll("install", "html-minifier", "--save-dev")
+    args.addAll("install", "html-minifier@4.0.0", "--save-dev")
 }
 
 val minifyShopHtml by tasks.registering(NodeTask::class) {
