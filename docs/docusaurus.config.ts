@@ -1,35 +1,79 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import type {PrismTheme} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+const prismTheme: PrismTheme = {
+  plain: {
+    color: '#e6e6e6',
+    backgroundColor: '#141414',
+  },
+  styles: [
+    {
+      types: ['comment', 'prolog', 'doctype', 'cdata'],
+      style: {color: '#7a7f87', fontStyle: 'italic'},
+    },
+    {
+      types: ['string', 'char', 'attr-value', 'regex', 'inserted'],
+      style: {color: '#9ece6a'},
+    },
+    {
+      types: ['keyword', 'tag', 'selector', 'atrule', 'important'],
+      style: {color: '#ff8a3d'},
+    },
+    {
+      types: ['class-name', 'builtin', 'attr-name', 'property', 'namespace'],
+      style: {color: '#7dcfff'},
+    },
+    {
+      types: ['number', 'boolean', 'constant'],
+      style: {color: '#e0af68'},
+    },
+    {
+      types: ['annotation', 'decorator'],
+      style: {color: '#d49bff'},
+    },
+    {
+      types: ['punctuation', 'operator'],
+      style: {color: '#8a8a8a'},
+    },
+    {
+      types: ['deleted'],
+      style: {color: '#f87171'},
+    },
+  ],
+};
+
+const baseUrl = process.env.DOCS_BASE_URL ?? '/';
 
 const config: Config = {
-  title: 'Dawn Dev',
-  tagline: '',
+  title: 'Dawn Server API',
+  tagline: 'Integrate your Minecraft server with the Dawn client.',
   favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
-  url: process.env.DOCS_URL,
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: process.env.DOCS_BASE_URL ?? '/',
+  url: process.env.DOCS_URL ?? 'http://localhost:3000',
+  baseUrl,
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Weheba',
   projectName: 'dawn-server-api',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
+
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {rel: 'icon', type: 'image/png', sizes: '512x512', href: `${baseUrl}img/icon.png`},
+    },
+    {
+      tagName: 'link',
+      attributes: {rel: 'apple-touch-icon', href: `${baseUrl}img/apple-icon.png`},
+    },
+  ],
 
   presets: [
     [
@@ -37,69 +81,47 @@ const config: Config = {
       {
         docs: {
           routeBasePath: '/',
-          sidebarPath: './sidebars.ts'
+          sidebarPath: './sidebars.ts',
         },
         blog: false,
         theme: {
-          customCss: [
-            './src/css/custom.css',
-            './src/css/font.css',
-            './src/css/footer.css',
-          ],
+          customCss: ['./src/css/font.css', './src/css/custom.css'],
         },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    // image: 'img/docusaurus-social-card.jpg',
+    image: 'img/social-card.png',
+    metadata: [{name: 'theme-color', content: '#0a0a0a'}],
     navbar: {
+      title: 'Server API',
       logo: {
-        alt: 'Feather Dev',
-        src: 'img/feather-dev-white.svg',
-      }
-    },
-    footer: {
-      style: 'dark',
-      links: [
+        alt: 'Dawn',
+        src: 'img/dawn-logo-white.svg',
+      },
+      items: [
         {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Server API',
-              href: '/'
-            }
-          ]
+          label: 'dawn.gg',
+          href: 'https://dawn.gg',
+          position: 'right',
         },
         {
-          title: 'Community',
-          items: [
-            {
-              label: 'Discord',
-              href: 'https://feathermc.com/discord',
-            },
-            {
-              label: 'TikTok',
-              href: 'https://feathermc.com/tiktok',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://feathermc.com/twitter',
-            },
-          ],
-        }
+          label: 'Discord',
+          href: 'https://discord.gg/feather',
+          position: 'right',
+        },
+        {
+          label: 'Get Dawn',
+          href: 'https://dawn.gg/#downloads',
+          position: 'right',
+          className: 'navbar__link--cta',
+        },
       ],
-      logo: {
-        alt: 'Digital Ingot Logo',
-        src: 'img/digital-ingot-logo.svg',
-        href: 'https://digitalingot.org/'
-      },
-      copyright: `Copyright © ${new Date().getFullYear()} Digital Ingot, Inc.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.oneDark,
+      theme: prismTheme,
+      darkTheme: prismTheme,
       additionalLanguages: ['java'],
     },
     colorMode: {
@@ -107,61 +129,9 @@ const config: Config = {
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
-    headTags: [
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "static/fonts/Inter-Regular.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "static/fonts/Inter-Medium.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "static/fonts/Inter-Bold.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "static/fonts/InterDisplay-Bold.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-      {
-        tagName: "link",
-        attributes: {
-          rel: "preload",
-          href: "static/fonts/IBMPlexMono-Regular.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossorigin: "anonymous",
-        },
-      },
-    ],
   } satisfies Preset.ThemeConfig,
 
-  "plugins": [
+  plugins: [
     [
       '@docusaurus/plugin-ideal-image',
       {

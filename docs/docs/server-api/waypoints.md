@@ -11,7 +11,7 @@ import Image from '@theme/IdealImage';
 
 ## Overview
 
-Waypoints allows server developers to create custom waypoints for players using Feather. Waypoints appear as beacons in the game world, helping players navigate to important locations. Waypoints can be customized with different colors, names, and durations.
+Waypoints allows server developers to create custom waypoints for players using Dawn. Waypoints appear as beacons in the game world, helping players navigate to important locations. Waypoints can be customized with different colors, names, and durations.
 
 <Image
   img={require('./assets/waypoints.png')}

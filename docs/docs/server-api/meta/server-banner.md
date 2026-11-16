@@ -2,7 +2,7 @@
 id: server-list-background
 title: Server List Background
 sidebar_label: Server List Background
-description: Customize how your server appears in Feather's server list with custom background images
+description: Customize how your server appears in Dawn's server list with custom background images
 ---
 
 import Image from '@theme/IdealImage';
@@ -11,14 +11,14 @@ import Image from '@theme/IdealImage';
 
 ## Overview
 
-The Server List Background feature allows server owners to customize how their server appears in Feather's server list by setting a custom background image. This enhances server branding and creates a more visually appealing entry in the server list for players using Feather.
+The Server List Background feature allows server owners to customize how their server appears in Dawn's server list by setting a custom background image. This enhances server branding and creates a more visually appealing entry in the server list for players using Dawn.
 
 <Image
   img={require('./assets/server-list-background.png')}
-  alt="A custom background image displayed behind a server entry in Feather's server list."
+  alt="A custom background image displayed behind a server entry in Dawn's server list."
   priority={true}
 />
-*A custom background image displayed behind a server entry in Feather's server list.*
+*A custom background image displayed behind a server entry in Dawn's server list.*
 
 ## Basic Usage
 
@@ -44,7 +44,7 @@ try {
 
 ## Image Requirements
 
-Feather has specific requirements for server list background images:
+Dawn has specific requirements for server list background images:
 
 - **Format**: Only PNG format is currently supported
 - **Recomended dimensions**: 909x102 pixels

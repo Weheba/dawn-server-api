@@ -2,7 +2,7 @@
 id: mods
 title: Mods
 sidebar_label: Mods
-description: Learn how to manage Feather mods, including blocking, enabling, and disabling mods.
+description: Learn how to manage Dawn mods, including blocking, enabling, and disabling mods.
 sidebar_position: 3
 ---
 
@@ -33,13 +33,13 @@ To manage mods, you'll first need to get a reference to a `FeatherPlayer` object
 // Get a player by UUID
 FeatherPlayer player = FeatherAPI.getPlayerService().getPlayer(playerUUID);
 
-// Or get all Feather players
+// Or get all Dawn players
 Collection<FeatherPlayer> allPlayers = FeatherAPI.getPlayerService().getPlayers();
 ```
 
 ### Working with FeatherMod Objects
 
-Most mod management operations use `FeatherMod` objects. A `FeatherMod` represents a built-in mod in Feather and is identified by its name:
+Most mod management operations use `FeatherMod` objects. A `FeatherMod` represents a built-in mod in Dawn and is identified by its name:
 
 ```java
 // Create a FeatherMod object
@@ -182,9 +182,9 @@ Since the November 15, 2026 client update, Frames no longer registers the `repla
 
 ## Reference
 
-### Common Feather Mods
+### Common Dawn Mods
 
-Here are some common Feather mods you might want to manage:
+Here are some common Dawn mods you might want to manage:
 
 | Name                        | Slug                          | Description                                                   |
 |-----------------------------|-------------------------------|---------------------------------------------------------------|
@@ -277,7 +277,7 @@ Here are some common Feather mods you might want to manage:
 | UHC Overlay                 | `uhcoverlay`                  | Resize popular UHC items to make them easier to find          |
 | UI Scaling                  | `uiScaling`                   | Can potentially affect other mods, USE WITH CAUTION!          |
 | ViewModel                   | `viewModel`                   | Adjust player viewmodel                                       |
-| Voice                       | `voice`                       | Speak with other Feather players                              |
+| Voice                       | `voice`                       | Speak with other Dawn players                                 |
 | Waypoints                   | `waypoints`                   | Render waypoints on a map                                     |
 | Weather Changer             | `weatherchanger`              | Change the weather locally                                    |
 | Zoom                        | `zoom`                        | Zoom in and out of objects                                    |

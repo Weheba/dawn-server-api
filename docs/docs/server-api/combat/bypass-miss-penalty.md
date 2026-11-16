@@ -20,7 +20,7 @@ To control a player's miss penalty state, you'll use the `bypassMissPenalty()` m
 Here's a basic implementation:
 
 ```java
-// Get a Feather player
+// Get a Dawn player
 FeatherPlayer featherPlayer = FeatherAPI.getPlayerService().getPlayer(player.getUniqueId());
 
 // Allow the player to bypass miss penalty
@@ -74,8 +74,8 @@ public void onPlayerJoinArena(Player player, ArenaType arenaType) {
 You can also tie miss penalty bypass to player permissions:
 
 ```java
-// When a player joins with Feather
-public void onFeatherPlayerJoin(PlayerHelloEvent event) {
+// When a player joins with Dawn
+public void onDawnPlayerJoin(PlayerHelloEvent event) {
     Player player = Bukkit.getPlayer(event.getPlayer().getUniqueId());
     if (player.hasPermission("myserver.combat.bypassmisspenalty")) {
         event.getPlayer().bypassMissPenalty(true);
@@ -85,10 +85,10 @@ public void onFeatherPlayerJoin(PlayerHelloEvent event) {
 
 ## Integration with Event System
 
-A common pattern is to set the miss penalty state when a player joins the server with Feather:
+A common pattern is to set the miss penalty state when a player joins the server with Dawn:
 
 ```java
-// Subscribe to the PlayerHelloEvent to catch when Feather users join
+// Subscribe to the PlayerHelloEvent to catch when Dawn users join
 FeatherAPI.getEventService().subscribe(PlayerHelloEvent.class, event -> {
     // Set miss penalty bypass based on game rules, permissions, or other factors
     event.getPlayer().bypassMissPenalty(myServerConfig.isMissPenaltyBypassed());

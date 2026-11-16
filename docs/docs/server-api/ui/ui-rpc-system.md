@@ -10,12 +10,12 @@ import UiRpcDiagramSvg from './assets/ui-rpc-diagram.svg';
 
 # UI RPC Communication
 
-The Remote Procedure Call (RPC) system enables bidirectional communication between your server and the Feather UI. This system allows you to create interactive UI elements that can trigger actions on the server and receive responses.
+The Remote Procedure Call (RPC) system enables bidirectional communication between your server and the Dawn UI. This system allows you to create interactive UI elements that can trigger actions on the server and receive responses.
 
 <UiRpcDiagramSvg />
 *Diagram showing the flow of RPC requests and responses between the client UI and server.*
 
-## How RPC Works in Feather
+## How RPC Works in Dawn
 
 1. The client UI makes an HTTP-like request to a specific endpoint
 2. The server routes the request to the appropriate RPC handler

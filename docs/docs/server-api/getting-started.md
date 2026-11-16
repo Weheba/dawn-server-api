@@ -95,19 +95,19 @@ After restarting your server, the API will be available for your plugins to use.
 
 ## Basic Usage
 
-Here's a simple example of a plugin that detects when a player with Feather joins the server:
+Here's a simple example of a plugin that detects when a player with Dawn joins the server:
 
 ```java
-public class MyFeatherPlugin extends JavaPlugin {
+public class MyDawnPlugin extends JavaPlugin {
     
     @Override
     public void onEnable() {
-        // Register for Feather events
+        // Register for Dawn events
         FeatherAPI.getEventService().subscribe(
             PlayerHelloEvent.class,
             event -> {
                 FeatherPlayer player = event.getPlayer();
-                getLogger().info(player.getName() + " is using Feather!");
+                getLogger().info(player.getName() + " is using Dawn!");
                 getLogger().info("Platform: " + event.getPlatform());
                 getLogger().info("Enabled mods: " + event.getFeatherMods().size());
             }
@@ -116,14 +116,14 @@ public class MyFeatherPlugin extends JavaPlugin {
 }
 ```
 
-This simple example logs information when a player using Feather joins your server.
+This simple example logs information when a player using Dawn joins your server.
 
 ## Next Steps
 
 Now that you've set up the Dawn Server API in your project, you can explore its various features:
 
-- [Events](./events.md) - Subscribe to Feather events
+- [Events](./events.md) - Subscribe to Dawn events
 - [Mods](./mods.md) - Control which mods players can use
-- [UI](./ui/overview.md) - Create custom UI overlays for Feather users
+- [UI](./ui/overview.md) - Create custom UI overlays for Dawn users
 - [Waypoints](./waypoints.md) - Create and manage waypoints for players
 - [Meta Services](/category/meta) - Customize server appearance and functionality

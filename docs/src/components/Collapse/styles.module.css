@@ -1,31 +1,20 @@
 .collapse {
-    --docusaurus-details-decoration-color: rgba(221, 53, 56, 0.9);
-    --docusaurus-details-transition: transform var(--ifm-transition-fast) ease;
-    margin: 0 0 var(--ifm-spacing-vertical);
-    border: 1px solid rgba(74, 74, 74, 0.5);
+  --docusaurus-details-decoration-color: var(--dawn-accent);
+  --docusaurus-details-transition: transform var(--ifm-transition-fast) ease;
+  --ifm-link-decoration: underline;
+  --ifm-tabs-color: var(--dawn-text);
+  --ifm-tabs-color-active: var(--dawn-accent);
+  --ifm-tabs-color-active-border: var(--dawn-accent);
 
-    --ifm-code-background: var(--ifm-collapse-code-bg-color);
-    --ifm-link-color: var(--ifm-collapse-foreground-color);
-    --ifm-link-hover-color: var(--ifm-collapse-foreground-color);
-    --ifm-link-decoration: underline;
-    --ifm-tabs-color: var(--ifm-collapse-foreground-color);
-    --ifm-tabs-color-active: var(--ifm-collapse-foreground-color);
-    --ifm-tabs-color-active-border: inherit;
-
-    background-color: rgba(13, 16, 18, 0.3);
-    border-radius: var(--ifm-global-radius);
-    box-shadow: var(--ifm-global-shadow-lw);
-    color: var(--ifm-collapse-foreground-color);
-    padding: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
-
-    --ifm-collapse-foreground-color: rgb(238, 249, 253);
-    --ifm-collapse-code-bg-color: rgba(0, 0, 0, 0.3);
+  margin: 0 0 var(--ifm-spacing-vertical);
+  padding: 12px 16px;
+  border: 1px solid var(--dawn-line);
+  border-radius: 10px;
+  background: var(--dawn-panel);
+  color: var(--dawn-text);
 }
 
 .collapse > summary {
-  font-weight: bold;
-}
-
-.collapse code {
-  background-color: var(--ifm-collapse-code-bg-color);
+  color: var(--dawn-strong);
+  font: 600 15px var(--ifm-font-family-monospace);
 }

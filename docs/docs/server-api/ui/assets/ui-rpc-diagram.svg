@@ -25,7 +25,7 @@
   <!-- Client section -->
   <rect x="50" y="10" width="300" height="350" rx="10" ry="10" fill="url(#clientGradient)" filter="url(#shadow)"/>
   <text x="200" y="40" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
-    Feather UI
+    Dawn UI
   </text>
   
   <!-- Client components -->
