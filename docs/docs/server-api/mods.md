@@ -158,6 +158,28 @@ enabledModsFuture.thenAccept(enabledMods -> {
 });
 ```
 
+## Dawn Frames
+
+Dawn Frames (slug `rewind`) keeps a short replay buffer on the player's client so they can save clips. It records only what that player's client already sees. If your server doesn't allow replay or recording mods, you can turn Frames off in two ways.
+
+### With the Server API
+
+Block `rewind` for the player. The client stops Frames and drops its buffer for the rest of the session. The block lifts when the player disconnects, so apply it every time a Dawn player joins:
+
+```java
+FeatherAPI.getEventService().subscribe(PlayerHelloEvent.class, event ->
+    event.getPlayer().blockMods(Collections.singletonList(new FeatherMod("rewind")))
+);
+```
+
+### Without a plugin
+
+Dawn keeps a list of servers where mods are turned off for everyone, matched by server address. Contact the Dawn team with your server addresses and the mods to turn off (for example `rewind`). Changes reach players without a client update.
+
+:::info
+Since the November 15, 2026 client update, Frames no longer registers the `replaymod:restrict` plugin channel, so anti-cheats won't flag it as ReplayMod. Paper and Spigot only send plugin messages on registered channels, so a ReplayMod restrict plugin won't turn Frames off there. Use the Server API or the server list instead.
+:::
+
 ## Reference
 
 ### Common Feather Mods
@@ -192,6 +214,7 @@ Here are some common Feather mods you might want to manage:
 | Custom Fog                  | `customfog`                   | Custom fog settings and clear water                           |
 | Damage Indicator            | `damageIndicator`             | Show mob health information                                   |
 | Dark Mode                   | `darkmode`                    | Dark mode for Minecraft GUI                                   |
+| Dawn Frames                 | `rewind`                      | Save clips from a short replay buffer                         |
 | Death Info                  | `deathInfo`                   | Show information on death                                     |
 | Direction                   | `direction`                   | Display your cardinal direction                               |
 | Discord                     | `discordRP`                   | Share your current status on Discord                          |
