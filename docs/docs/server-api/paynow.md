@@ -28,7 +28,7 @@ To see how the client will open the checkout, use `getPayNowCheckoutType()`:
 
 - `IN_GAME`: opens in an in-game overlay. PayPal and Google Pay open in a separate window, and the player can switch to their browser at any time.
 - `BROWSER`: opens in the player's system browser, for example on macOS.
-- `UNSUPPORTED`: older clients get the chat link instead.
+- `UNSUPPORTED`: the player gets the chat link instead. Older clients report this, and so do Dawn clients on servers where Dawn has turned checkouts off.
 
 ```java
 if (featherPlayer.getPayNowCheckoutType() == PayNowCheckoutType.UNSUPPORTED) {
@@ -46,4 +46,4 @@ Only open a checkout **in response to a player action**, such as a command, a cl
 - Only one checkout can be open at a time. After one opens or closes, new checkouts are ignored for 5 seconds.
 - The overlay only opens while the player is in game, in chat, or in a container GUI. Otherwise the call is ignored, so open it from the click handler, not after closing the menu yourself.
 - If the overlay can't load, the client opens the checkout in the browser instead.
-- Dawn can turn off checkouts on a server. Contact the Dawn team if you need that.
+- Dawn can turn off checkouts on a server. Its Dawn players then report `UNSUPPORTED` and get the chat link.

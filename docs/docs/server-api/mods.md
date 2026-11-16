@@ -177,7 +177,7 @@ FeatherAPI.getEventService().subscribe(PlayerHelloEvent.class, event ->
 Dawn keeps a list of servers where mods are turned off for everyone, matched by server address. Contact the Dawn team with your server addresses and the mods to turn off (for example `rewind`). Changes reach players without a client update.
 
 :::info
-Dawn clients don't register the `replaymod:restrict` plugin channel, so anti-cheats won't flag Frames as ReplayMod. A server that does send a `replaymod:restrict` message still turns Frames off.
+Since the November 15, 2026 client update, Frames no longer registers the `replaymod:restrict` plugin channel, so anti-cheats won't flag it as ReplayMod. Paper and Spigot only send plugin messages on registered channels, so a ReplayMod restrict plugin won't turn Frames off there. Use the Server API or the server list instead.
 :::
 
 ## Reference
@@ -205,7 +205,6 @@ Here are some common Feather mods you might want to manage:
 | Color Saturation            | `colorSaturation`             | Adjust your display color saturation settings                 |
 | Combo Display               | `comboDisplay`                | Display number of consecutive hits                            |
 | Coordinates                 | `coordinates`                 | Display your location and world info                          |
-| Dawn Frames                 | `rewind`                      | Save clips from a short replay buffer                         |
 | CPS                         | `cps`                         | Show your clicks per second                                   |
 | Custom Crosshair            | `crosshair`                   | Customize your crosshair                                      |
 | Cull Logs                   | `culllogs`                    | Automatically remove old log files                            |
@@ -215,6 +214,7 @@ Here are some common Feather mods you might want to manage:
 | Custom Fog                  | `customfog`                   | Custom fog settings and clear water                           |
 | Damage Indicator            | `damageIndicator`             | Show mob health information                                   |
 | Dark Mode                   | `darkmode`                    | Dark mode for Minecraft GUI                                   |
+| Dawn Frames                 | `rewind`                      | Save clips from a short replay buffer                         |
 | Death Info                  | `deathInfo`                   | Show information on death                                     |
 | Direction                   | `direction`                   | Display your cardinal direction                               |
 | Discord                     | `discordRP`                   | Share your current status on Discord                          |
