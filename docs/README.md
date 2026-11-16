@@ -9,44 +9,17 @@ server, enable the override in the Dawn client: **General settings -> Developer 
 settings**, then **Allow Server UI on unwhitelisted servers**. Unwhitelisted servers receive a
 `NOT_WHITELISTED` error through the page's `UILoadHandler`.
 
-# Website
+## Website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
-
-### Installation
+The docs site is built with [Docusaurus](https://docusaurus.io/).
 
 ```
-$ yarn
+npm ci
+npm start
 ```
 
-### Local Development
+`npm start` serves the site at http://localhost:3000 and reloads on changes. `npm run build` writes
+the static site to `build/` and fails on broken links.
 
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Pushes to `main` that touch `docs/` are built and published to GitHub Pages by
+`.github/workflows/pages.yml`.

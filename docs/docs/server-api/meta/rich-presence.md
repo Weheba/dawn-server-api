@@ -2,7 +2,7 @@
 id: discord-rich-presence
 title: Discord Rich Presence
 sidebar_label: Discord Rich Presence
-description: Customize players' Discord status by integrating with Feather's Discord Rich Presence functionality
+description: Customize players' Discord status by integrating with Dawn's Discord Rich Presence functionality
 ---
 
 import Image from '@theme/IdealImage';

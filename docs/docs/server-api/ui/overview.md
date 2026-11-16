@@ -1,6 +1,6 @@
 ---
 id: overview
-title: overview
+title: UI System
 sidebar_label: Overview
 description: Create rich, interactive in-game UI overlays using web technologies
 sidebar_position: 1
@@ -13,7 +13,7 @@ import OverlayDemoVideoUrl from './assets/overlay-demo.mp4';
 
 Dawn UI allows you to create rich, interactive in-game overlays using web technologies (HTML, CSS, and JavaScript). This powerful feature lets server developers build complex interfaces that seamlessly integrate with Minecraft gameplay.
 
-<ReactPlayer playing loop muted url={OverlayDemoVideoUrl} />
+<ReactPlayer playing loop muted playsinline width="100%" height="auto" url={OverlayDemoVideoUrl} />
 *Visual representation of how the UI overlay appears in-game, showing a transparent overlay with interactive elements on top of the Minecraft world.*
 
 ## Key Features
@@ -96,7 +96,7 @@ FeatherAPI.getUIService().openPageForPlayer(player, page);
 Instead of hosting HTML files, you can use data URLs to embed your HTML content directly:
 
 ```java
-String htmlContent = "<html><body><h1>Hello, Feather!</h1></body></html>";
+String htmlContent = "<html><body><h1>Hello, Dawn!</h1></body></html>";
 String dataUrl = "data:text/html;base64," + Base64.getEncoder().encodeToString(htmlContent.getBytes());
 UIPage page = FeatherAPI.getUIService().registerPage(this, dataUrl);
 ```

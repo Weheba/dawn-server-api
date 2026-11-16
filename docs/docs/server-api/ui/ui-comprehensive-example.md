@@ -2,7 +2,7 @@
 id: ui-comprehensive-example
 title: Comprehensive UI Example
 sidebar_label: Comprehensive Example
-description: A complete example of a server shop UI using Feather UI's
+description: A complete example of a server shop UI using Dawn UI
 sidebar_position: 3
 ---
 
@@ -11,9 +11,9 @@ import ShopDemoVideoUrl from './assets/shop-demo.mp4';
 
 # Comprehensive UI Example: Server Shop
 
-This guide walks through building a complete server shop UI using Feather UI's. We'll cover the entire process from crafting the server-side code to designing the client-side interface.
+This guide walks through building a complete server shop UI using Dawn UI. We'll cover the entire process from crafting the server-side code to designing the client-side interface.
 
-<ReactPlayer playing loop muted url={ShopDemoVideoUrl} />
+<ReactPlayer playing loop muted playsinline width="100%" height="auto" url={ShopDemoVideoUrl} />
 *Example of the completed server shop UI showing categories, items, and player balance.*
 
 ## Project Overview
@@ -1760,9 +1760,9 @@ public class ShopController implements RpcController {
 
 ## Conclusion
 
-This comprehensive example demonstrates how to build a full-featured shop UI using the Feather UIs. The techniques shown here can be adapted for many different types of UI applications like inventories, leaderboards, settings panels, mini-game interfaces, and more.
+This comprehensive example demonstrates how to build a full-featured shop UI using Dawn UI. The techniques shown here can be adapted for many different types of UI applications like inventories, leaderboards, settings panels, mini-game interfaces, and more.
 
-By using web technologies with the Feather UIs, you can create rich, interactive experiences that would be impossible with vanilla Minecraft interfaces.
+By using web technologies with Dawn UI, you can create rich, interactive experiences that would be impossible with vanilla Minecraft interfaces.
 
 ## Resources
 
